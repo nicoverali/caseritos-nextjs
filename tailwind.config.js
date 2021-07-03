@@ -21,6 +21,7 @@ module.exports = {
           DEFAULT: colors.red[400],
           dark: colors.red[500],
         },
+        error: colors.red[500],
       },
     },
     fontFamily: {
