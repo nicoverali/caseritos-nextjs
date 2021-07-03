@@ -2,3 +2,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    color: theme("colors.black.DEFAULT");
+  }
+}
+
+@layer utilities {
+  @variants responsive {
+    .top-translate-center {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .left-translate-center {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .translate-center {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
