@@ -9,9 +9,9 @@ export interface ButtonProps extends ActionProps {
 }
 
 const colors = {
-  default: "text-black bg-white hover:bg-gray-50 active:bg-gray-100",
-  primary: `text-white bg-primary hover:bg-primary-light active:bg-primary-dark`,
-  secondary: "text-white bg-black hover:bg-black-light active:bg-black-dark",
+  default: "text-black ring-black bg-white hover:bg-gray-50 active:bg-gray-100",
+  primary: `text-white ring-primary-light bg-primary hover:bg-primary-light active:bg-primary-dark`,
+  secondary: `text-white bg-black ring-black hover:bg-black-light active:bg-black-dark`,
 };
 
 const sizeStyle = {
@@ -25,7 +25,7 @@ export default function Button({ size = "md", ...props }: ButtonProps) {
   const color = colors[style];
   const padding = sizeStyle[size];
   const baseClass =
-    "inline-block group rounded-none outline-none border-black focus-visible:border-2";
+    "inline-block group rounded-none outline-none ring-offset-1 focus-visible:ring";
 
   return (
     <Action

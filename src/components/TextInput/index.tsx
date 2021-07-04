@@ -39,7 +39,7 @@ function TextInput(props: TextInputProps) {
         className={clsx(
           props.width,
           size,
-          "px-4 border border-gray-200 outline-none focus-visible:border-black focus-visible:border-2",
+          "px-4 border border-gray-200 outline-none focus:border-black",
           { "border-error": props.error }
         )}
       />
