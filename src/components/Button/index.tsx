@@ -1,9 +1,8 @@
 import Action, { ActionProps } from "components/Action";
-import Underline from "./Underline";
-import React, { Fragment } from "react";
+import React from "react";
 import clsx from "clsx";
 
-interface ButtonProps extends ActionProps {
+export interface ButtonProps extends ActionProps {
   primary?: boolean;
   secondary?: boolean;
   size?: "sm" | "md" | "lg";
@@ -33,10 +32,7 @@ export default function Button({ size = "md", ...props }: ButtonProps) {
       {...props}
       className={clsx(baseClass, color, padding, props.className)}
     >
-      <Fragment>
-        {props.children}
-        <Underline />
-      </Fragment>
+      {props.children}
     </Action>
   );
 }
