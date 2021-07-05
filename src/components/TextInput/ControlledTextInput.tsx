@@ -10,7 +10,7 @@ export interface ControlledTextInputProps {
   type?: "text" | "number" | "email" | "password" | "search";
   className?: string;
   placeholder?: string;
-  value?: string;
+  value?: string | number;
   max?: number;
   min?: number;
   maxLength?: number;
