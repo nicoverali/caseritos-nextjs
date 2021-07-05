@@ -23,6 +23,9 @@ module.exports = {
         },
         error: colors.red[500],
       },
+      transitionTimingFunction: {
+        "bounce-in": "cubic-bezier(0.29,-0.27, 0.81,-0.16)",
+      },
     },
     fontFamily: {
       sans: ["Poppins", "ui-sans-serif", "system-ui"],
@@ -34,5 +37,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };
