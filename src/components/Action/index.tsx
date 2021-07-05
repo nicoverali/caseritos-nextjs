@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react";
+import React, { MouseEventHandler, ReactNode } from "react";
 
 export type HTMLButtonType = "submit" | "reset" | "button";
 export type ActionClickEvent = MouseEventHandler<
@@ -8,7 +8,7 @@ export type ActionClickEvent = MouseEventHandler<
 export interface ActionProps {
   href?: string;
   type?: HTMLButtonType;
-  children: JSX.Element | string;
+  children: ReactNode;
   className?: string;
   onClick?: ActionClickEvent;
 }
