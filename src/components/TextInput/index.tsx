@@ -41,9 +41,8 @@ function TextInput(props: TextInputProps) {
         id={id}
         className={clsx(
           classes.input,
-          props.width,
           size,
-          "px-4 border border-gray-200 outline-none focus:border-black",
+          "px-4 w-full border border-gray-200 outline-none focus:border-black",
           { "border-error": props.error }
         )}
       />
