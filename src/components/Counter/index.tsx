@@ -43,9 +43,15 @@ function Counter(props: CounterProps) {
 
   return (
     <div className={clsx("flex", width)}>
-      <SquareButton className="z-10" size={size} onClick={decrement} secondary>
+      <SquareButton
+        className="z-10"
+        size={size}
+        onClick={decrement}
+        style="secondary"
+      >
         <MinusIcon className={iconSizes[size]} />
       </SquareButton>
+
       <TextInput
         {...input}
         type="number"
@@ -59,7 +65,13 @@ function Counter(props: CounterProps) {
           input: "text-center w-full h-full py-0",
         }}
       />
-      <SquareButton className="z-10" size={size} onClick={increment} secondary>
+
+      <SquareButton
+        className="z-10"
+        size={size}
+        onClick={increment}
+        style="secondary"
+      >
         <PlusIcon className={iconSizes[size]} />
       </SquareButton>
     </div>

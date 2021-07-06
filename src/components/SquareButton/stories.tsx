@@ -23,28 +23,28 @@ Default.parameters = {
 
 export const Primary = Template.bind({});
 Primary.args = {
-  primary: true,
+  style: "primary",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  secondary: true,
+  style: "secondary",
 };
 
 export const SmallSize = Template.bind({});
 SmallSize.args = {
   size: "sm",
-  primary: true,
+  style: "primary",
 };
 
 export const MediumSize = Template.bind({});
 MediumSize.args = {
   size: "md",
-  primary: true,
+  style: "primary",
 };
 
 export const LargeSize = Template.bind({});
 LargeSize.args = {
   size: "lg",
-  primary: true,
+  style: "primary",
 };

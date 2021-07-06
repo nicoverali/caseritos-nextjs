@@ -11,50 +11,57 @@ const Template: Story<ComponentProps<typeof Button>> = (args) => (
   <Button {...args} />
 );
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
+export const PrimaryStyle = Template.bind({});
+PrimaryStyle.args = {
+  style: "primary",
   children: "Button",
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  secondary: true,
+export const SecondaryStyle = Template.bind({});
+SecondaryStyle.args = {
+  style: "secondary",
   children: "Button",
 };
 
-export const Neutral = Template.bind({});
-Neutral.args = {
+export const DefaultStyle = Template.bind({});
+DefaultStyle.args = {
   children: "Button",
+  style: "default",
 };
-Neutral.parameters = {
+DefaultStyle.parameters = {
   backgrounds: { default: "dark" },
+};
+
+export const NegativeStyle = Template.bind({});
+NegativeStyle.args = {
+  children: "Button",
+  style: "negative",
 };
 
 export const SmallSize = Template.bind({});
 SmallSize.args = {
-  primary: true,
+  style: "primary",
   size: "sm",
   children: "Button",
 };
 
 export const MediumSize = Template.bind({});
 MediumSize.args = {
-  primary: true,
+  style: "primary",
   size: "md",
   children: "Button",
 };
 
 export const LargeSize = Template.bind({});
 LargeSize.args = {
-  primary: true,
+  style: "primary",
   size: "lg",
   children: "Button",
 };
 
 export const AsLink = Template.bind({});
 AsLink.args = {
-  primary: true,
+  style: "primary",
   href: "#",
   children: "Button",
 };

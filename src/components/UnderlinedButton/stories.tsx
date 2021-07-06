@@ -14,17 +14,17 @@ const Template: Story<ComponentProps<typeof UnderlineButton>> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   children: "Button",
-  primary: true,
+  style: "primary",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   children: "Button",
-  secondary: true,
+  style: "secondary",
 };
 
 export const LargeText = Template.bind({});
 LargeText.args = {
   children: "This is a large button",
-  primary: true,
+  style: "primary",
 };
