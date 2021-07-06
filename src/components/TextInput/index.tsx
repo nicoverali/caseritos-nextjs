@@ -6,7 +6,7 @@ import ErrorMessage from "./ErrorMessage";
 import Label from "./Label";
 
 interface TextInputProps extends ControlledTextInputProps {
-  classes: {
+  classes?: {
     container?: string;
     label?: string;
     input?: string;
