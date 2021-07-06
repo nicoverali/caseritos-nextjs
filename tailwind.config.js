@@ -1,5 +1,11 @@
 const { colors } = require("tailwindcss/defaultTheme");
 
+const PRIMARY_COLOR = {
+  light: colors.red[300],
+  DEFAULT: colors.red[400],
+  dark: colors.red[500],
+};
+
 module.exports = {
   mode: "jit",
   purge: ["src/**/*.{js,ts,jsx,tsx}"],
@@ -13,12 +19,11 @@ module.exports = {
           dark: "#111",
           pure: "#000",
         },
-        primary: {
-          light: colors.red[300],
-          DEFAULT: colors.red[400],
-          dark: colors.red[500],
-        },
+        primary: PRIMARY_COLOR,
         error: colors.red[500],
+      },
+      fill: {
+        primary: PRIMARY_COLOR,
       },
       transitionTimingFunction: {
         "bounce-in": "cubic-bezier(0.29,-0.27, 0.81,-0.16)",
