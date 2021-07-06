@@ -5,6 +5,7 @@ module.exports = {
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   webpackFinal: async (config) => {
     config.resolve.modules.push("../src/");
+    config.resolve.alias["@public"] = path.resolve(__dirname, "../public/");
     config.module.rules.push({
       test: /\,css&/,
       use: [
