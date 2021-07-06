@@ -5,7 +5,7 @@ import HeaderLeft, { HeaderLeftProps } from "./HeaderLeft";
 import HeaderRight, { HeaderRightProps } from "./HeaderRight";
 
 export default {
-  title: "Section/Header",
+  title: "Component/Header",
   component: Header,
   parameters: {
     layout: "fullscreen",
