@@ -59,7 +59,7 @@ function Counter(props: CounterProps) {
         size={size}
         value={counter}
         onType={setCounter}
-        error="error"
+        error={input.error}
         classes={{
           container: "focus:z-20 flex-grow",
           input: "text-center w-full h-full py-0 hide-number-spin",
