@@ -10,6 +10,15 @@
 }
 
 @layer utilities {
+  .hide-number-spin {
+    appearence: none;
+  }
+
+  .hide-number-spin::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
   @variants responsive {
     .top-translate-center {
       top: 50%;

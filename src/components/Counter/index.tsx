@@ -62,7 +62,7 @@ function Counter(props: CounterProps) {
         error="error"
         classes={{
           container: "focus:z-20 flex-grow",
-          input: "text-center w-full h-full py-0",
+          input: "text-center w-full h-full py-0 hide-number-spin",
         }}
       />
 
