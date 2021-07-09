@@ -35,13 +35,15 @@ class OrderService {
   async getAll(
     page: number,
     size: number,
-    accessToken: string
+    accessToken: string,
+    signal?: AbortSignal
   ): Promise<Order[]> {
     const offset = page * size;
     const res = await fetch(apiUrl(`orders?offset=${offset}&limit=${size}`), {
       headers: new Headers({
         Authorization: `Bearer ${accessToken}`,
       }),
+      signal,
     });
 
     if (res.status == 401)
@@ -63,7 +65,8 @@ class OrderService {
   async place(
     productId: number,
     quantity: number,
-    accessToken: string
+    accessToken: string,
+    signal?: AbortSignal
   ): Promise<void> {
     const res = await fetch(apiUrl(`orders`), {
       method: "POST",
@@ -72,6 +75,7 @@ class OrderService {
         "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       }),
+      signal,
     });
 
     if (res.status == 409)

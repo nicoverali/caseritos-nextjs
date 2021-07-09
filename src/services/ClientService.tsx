@@ -16,13 +16,17 @@ class UnavailableEmail extends Error {
 }
 
 class ClientService {
-  async register(client: ClientRegisterRequest): Promise<void> {
+  async register(
+    client: ClientRegisterRequest,
+    signal?: AbortSignal
+  ): Promise<void> {
     const res = await fetch(apiUrl("client"), {
       method: "POST",
       body: JSON.stringify(client),
       headers: new Headers({
         "Content-Type": "application/json",
       }),
+      signal,
     });
 
     if (res.status == 409) throw new UnavailableEmail("Email already exists");

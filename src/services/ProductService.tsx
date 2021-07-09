@@ -16,10 +16,15 @@ export interface Product {
 }
 
 class ProductService {
-  async getAll(page: number, size: number): Promise<Product[]> {
+  async getAll(
+    page: number,
+    size: number,
+    signal?: AbortSignal
+  ): Promise<Product[]> {
     const offset = page * size;
     const products = await fetch(
-      apiUrl(`products?offset=${offset}&limit=${size}`)
+      apiUrl(`products?offset=${offset}&limit=${size}`),
+      { signal }
     ).then((res) => res.json() as Promise<Product[]>);
 
     products.forEach((p) => {
@@ -30,8 +35,8 @@ class ProductService {
     return products;
   }
 
-  async get(id: number): Promise<Product> {
-    const product = await fetch(apiUrl(`products/${id}`)).then(
+  async get(id: number, signal?: AbortSignal): Promise<Product> {
+    const product = await fetch(apiUrl(`products/${id}`), { signal }).then(
       (res) => res.json() as Promise<Product>
     );
 

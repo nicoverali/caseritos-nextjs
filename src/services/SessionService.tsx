@@ -15,13 +15,14 @@ class UnauthorizedError extends Error {
 }
 
 class SessionService {
-  async login(credentials: Credentials): Promise<string> {
+  async login(credentials: Credentials, signal?: AbortSignal): Promise<string> {
     const res = await fetch(apiUrl("session"), {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: new Headers({
         "Content-Type": "application/json",
       }),
+      signal,
     });
 
     if (res.status == 401)
@@ -41,7 +42,7 @@ class SessionService {
     return token;
   }
 
-  async logout(): Promise<void> {
+  async logout(signal?: AbortSignal): Promise<void> {
     const token = localStorage.getItem(STORAGE_KEY);
     if (token) {
       localStorage.removeItem(STORAGE_KEY);
@@ -50,6 +51,7 @@ class SessionService {
         headers: new Headers({
           Authorization: `Bearer ${token}`,
         }),
+        signal,
       });
     }
   }
