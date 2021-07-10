@@ -30,19 +30,21 @@ function TextInput(props: TextInputProps) {
   const size = sizes[props.size || "md"];
   const classes = props.classes || {};
 
+  const { hideLabel, ...rest } = props;
+
   return (
     <div className={clsx(props.className, classes.container, props.width)}>
-      <Label forId={id} hidden={props.hideLabel} className={classes.label}>
+      <Label forId={id} hidden={hideLabel} className={classes.label}>
         {props.label}
       </Label>
 
       <ControlledTextInput
-        {...props}
+        {...rest}
         id={id}
         className={clsx(
           classes.input,
           size,
-          "px-4 w-full border border-gray-200 outline-none focus:border-black",
+          "px-4 w-full border-2 border-gray-200 outline-none focus:border-black",
           { "border-error": props.error }
         )}
       />
