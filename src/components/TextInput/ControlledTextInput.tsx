@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React, { ChangeEvent } from "react";
 
 type InputChange = ChangeEvent<HTMLInputElement>;
-type TypeEventHandler = (value: string) => void;
+type TypeEventHandler = (value: string, name: string) => void;
 
 export interface ControlledTextInputProps {
   name: string;
@@ -19,13 +19,12 @@ export interface ControlledTextInputProps {
 
 function ControlledTextInput(props: ControlledTextInputProps) {
   const type = props.type || "text";
+  const { onType, ...rest } = props;
 
   const changeHandler = (event: InputChange) =>
-    props.onType && props.onType(event.target.value);
+    onType && onType(event.target.value, event.target.name);
 
-  return (
-    <input {...props} type={type} id={props.id} onChange={changeHandler} />
-  );
+  return <input {...rest} type={type} id={props.id} onChange={changeHandler} />;
 }
 
 export default ControlledTextInput;
