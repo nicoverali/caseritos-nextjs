@@ -2,7 +2,7 @@ import apiUrl from "./apiUrl";
 
 const STORAGE_KEY = "caseritos_token";
 
-interface Credentials {
+export interface Credentials {
   email: string;
   password: string;
 }
