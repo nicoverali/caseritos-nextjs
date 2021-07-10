@@ -2,10 +2,20 @@ import TextInput from "components/TextInput";
 import UnderlineButton from "components/UnderlinedButton";
 import React from "react";
 import SellersSVG from "components/SellersSVG";
+import clsx from "clsx";
 
-export default function BecomeSeller() {
+interface BecomeSellerProps {
+  className?: string;
+}
+
+export default function BecomeSeller({ className }: BecomeSellerProps) {
   return (
-    <div className="w-full flex items-center flex-col md:flex-row justify-center">
+    <div
+      className={clsx(
+        "w-full flex items-center flex-col md:flex-row justify-center",
+        className
+      )}
+    >
       <SellersSVG className="max-w-sm md:max-w-md 2xl:max-w-2xl mb-8 md:mr-8 md:mb-0" />
 
       <div>
