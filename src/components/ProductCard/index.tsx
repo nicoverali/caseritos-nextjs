@@ -3,27 +3,24 @@ import NumberFormat from "react-number-format";
 import ArrowedText from "components/ArrowedText";
 import ProductCardContainer from "./ProductCardContainer";
 import SquareImage from "./SquareImage";
+import { Product } from "services/ProductService";
 
 interface ProductProps {
-  product: {
-    image: string;
-    alt: string;
-    owner: string;
-    name: string;
-    price: string | number;
-  };
+  product: Product;
   cta?: string;
   className?: string;
 }
 
 function ProductCard(props: ProductProps) {
-  const { image, alt, owner, name, price } = props.product;
+  const { owner, name, price, thumbnailUrl, description } = props.product;
   const { cta = "Details" } = props;
   return (
     <ProductCardContainer classNames={props.className}>
-      <SquareImage layout="fill" src={image} alt={alt} />
+      <SquareImage layout="fill" src={thumbnailUrl} alt={description} />
       <div className="text-left w-full group-focus:pl-2 group-hover:pl-2 transition-all ease-bounce-in duration-200">
-        <p className="pr-2 h-5 line-clamp-1 text-sm font-light mt-4">{owner}</p>
+        <p className="pr-2 h-5 line-clamp-1 text-sm font-light mt-4">
+          {owner.storeName}
+        </p>
         <p className="pr-2 h-10 leading-5 line-clamp-2 mt-2 overflow-hidden ">
           {name}
         </p>

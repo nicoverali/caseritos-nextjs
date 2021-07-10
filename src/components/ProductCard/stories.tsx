@@ -1,6 +1,7 @@
 import React, { ComponentProps } from "react";
 import { Story, ComponentMeta } from "@storybook/react";
 import ProductCard from ".";
+import { Product } from "services/ProductService";
 
 export default {
   title: "Component/ProductCard",
@@ -11,13 +12,21 @@ const Template: Story<ComponentProps<typeof ProductCard>> = (args) => (
   <ProductCard {...args} className="w-64" />
 );
 
-const testProduct = {
-  image:
-    "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=282&q=80",
-  alt: "food",
-  owner: "The Bakery",
+const testProduct: Product = {
+  id: 1,
   name: "Copa de chocolate delicioso",
+  description: "food",
   price: 800,
+  stock: 40,
+  owner: {
+    id: 1,
+    storeName: "The Bakery",
+  },
+  pictureUrl:
+    "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=282&q=80",
+  thumbnailUrl:
+    "https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=282&q=80",
+  createdAt: new Date(),
 };
 
 export const Default = Template.bind({});
@@ -29,7 +38,10 @@ export const LargeOwner = Template.bind({});
 LargeOwner.args = {
   product: {
     ...testProduct,
-    owner: "Some large owner name that don't exist",
+    owner: {
+      ...testProduct.owner,
+      storeName: "Some large owner name that don't exist",
+    },
   },
 };
 
