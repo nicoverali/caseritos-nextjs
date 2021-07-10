@@ -1,3 +1,4 @@
+import { UnauthorizedError, UnexpectedRequestError } from "./apiErrors";
 import apiUrl from "./apiUrl";
 
 const STORAGE_KEY = "caseritos_token";
@@ -5,13 +6,6 @@ const STORAGE_KEY = "caseritos_token";
 export interface Credentials {
   email: string;
   password: string;
-}
-
-class UnauthorizedError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "UnauthorizedError";
-  }
 }
 
 class SessionService {
@@ -25,12 +19,8 @@ class SessionService {
       signal,
     });
 
-    if (res.status == 401)
-      throw new UnauthorizedError("Client credentials are invalid");
-    if (res.status != 200)
-      throw new Error(
-        `Request failed with status: ${res.status} (${res.statusText})`
-      );
+    if (res.status == 401) throw new UnauthorizedError();
+    if (res.status != 200) throw new UnexpectedRequestError(res);
 
     const token = await res.text();
     localStorage.setItem(STORAGE_KEY, token);

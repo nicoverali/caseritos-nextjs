@@ -1,3 +1,8 @@
+import {
+  UnauthorizedError,
+  UnavailableEmail,
+  UnexpectedRequestError,
+} from "./apiErrors";
 import apiUrl from "./apiUrl";
 
 export interface ClientRegisterRequest {
@@ -15,21 +20,6 @@ export interface Client {
   phone: string;
   address: string;
 }
-
-export class UnavailableEmail extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "UnavailableEmail";
-  }
-}
-
-class UnauthorizedError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "UnauthorizedError";
-  }
-}
-
 class ClientService {
   async register(
     client: ClientRegisterRequest,
@@ -44,11 +34,8 @@ class ClientService {
       signal,
     });
 
-    if (res.status == 409) throw new UnavailableEmail("Email already exists");
-    if (res.status != 201)
-      throw new Error(
-        `Request failed with status: ${res.status} (${res.statusText})`
-      );
+    if (res.status == 409) throw new UnavailableEmail();
+    if (res.status != 201) throw new UnexpectedRequestError(res);
 
     return;
   }
@@ -61,11 +48,8 @@ class ClientService {
       signal,
     });
 
-    if (res.status == 401) throw new UnauthorizedError("User is not logged in");
-    if (res.status != 200)
-      throw new Error(
-        `Request failed with status: ${res.status} (${res.statusText})`
-      );
+    if (res.status == 401) throw new UnauthorizedError();
+    if (res.status != 200) throw new UnexpectedRequestError(res);
 
     const client = await (res.json() as Promise<Client>);
 

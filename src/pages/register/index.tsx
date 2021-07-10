@@ -8,14 +8,12 @@ import TextInput from "components/TextInput";
 import Link from "next/link";
 import React, { useState } from "react";
 import Footer from "sections/Footer";
-import ClientService, {
-  ClientRegisterRequest,
-  UnavailableEmail,
-} from "services/ClientService";
+import ClientService, { ClientRegisterRequest } from "services/ClientService";
 import { useForm } from "react-hook-form";
 import SessionService from "services/SessionService";
 import FormErrorBox from "components/FormErrorBox";
 import FormErrorMessage from "components/FormErrorBox/FormErrorMessage";
+import { UnavailableEmail } from "services/apiErrors";
 
 const requiredRule = {
   required: {

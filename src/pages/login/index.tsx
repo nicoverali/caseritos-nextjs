@@ -10,10 +10,10 @@ import React, { useContext, useState } from "react";
 import Footer from "sections/Footer";
 import { useForm } from "react-hook-form";
 import { ClientSessionContext } from "context/ClientSessionProvider";
-import clsx from "clsx";
-import { Credentials, UnauthorizedError } from "services/SessionService";
+import { Credentials } from "services/SessionService";
 import FormErrorBox from "components/FormErrorBox";
 import FormErrorMessage from "components/FormErrorBox/FormErrorMessage";
+import { UnauthorizedError } from "services/apiErrors";
 
 const requiredRule = {
   value: true,
