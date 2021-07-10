@@ -32,13 +32,14 @@ const iconSizes = {
 function Counter(props: CounterProps) {
   const { input } = props;
   const { size = "md", width } = props;
+  const { onChange, onInvalid, ...inputRest } = props.input;
 
   const [counter, setCounter, increment, decrement] = useCounter(
     0,
     input.min,
     input.max,
-    input.onChange,
-    input.onInvalid
+    onChange,
+    onInvalid
   );
 
   return (
@@ -53,7 +54,7 @@ function Counter(props: CounterProps) {
       </SquareButton>
 
       <TextInput
-        {...input}
+        {...inputRest}
         type="number"
         hideLabel
         size={size}
