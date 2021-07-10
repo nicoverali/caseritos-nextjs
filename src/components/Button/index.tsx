@@ -1,5 +1,5 @@
-import Action, { ActionProps } from "components/Action";
-import React from "react";
+import Action, { ActionElement, ActionProps } from "components/Action";
+import React, { ForwardedRef } from "react";
 import clsx from "clsx";
 
 export interface ButtonProps extends ActionProps {
@@ -20,13 +20,15 @@ const sizes = {
   lg: "py-4 px-14",
 };
 
-function Button({ size = "md", style = "default", ...props }: ButtonProps) {
+function Button(props: ButtonProps, ref: ForwardedRef<ActionElement>) {
+  const { size = "md", style = "default", ...rest } = props;
   const baseClass =
     "inline-block group rounded-none outline-none ring-offset-1 focus-visible:ring border-2";
 
   return (
     <Action
-      {...props}
+      {...rest}
+      ref={ref}
       className={clsx(baseClass, styles[style], sizes[size], props.className)}
     >
       {props.children}
@@ -34,4 +36,4 @@ function Button({ size = "md", style = "default", ...props }: ButtonProps) {
   );
 }
 
-export default Button;
+export default React.forwardRef<ActionElement, ButtonProps>(Button);

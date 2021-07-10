@@ -1,5 +1,6 @@
-import React, { MouseEventHandler, ReactNode } from "react";
+import React, { MouseEventHandler, ReactNode, ForwardedRef } from "react";
 
+export type ActionElement = HTMLButtonElement & HTMLAnchorElement;
 export type HTMLButtonType = "submit" | "reset" | "button";
 export type ActionClickEvent = MouseEventHandler<
   HTMLButtonElement | HTMLAnchorElement
@@ -13,13 +14,14 @@ export interface ActionProps {
   onClick?: ActionClickEvent;
 }
 
-export default function Action(props: ActionProps) {
+function Action(props: ActionProps, ref: ForwardedRef<ActionElement>) {
   const Component = props.href ? "a" : "button";
   const type: HTMLButtonType = props.type || "button";
 
   return (
     <Component
       href={props.href}
+      ref={ref}
       type={Component == "button" ? type : undefined}
       className={props.className}
       onClick={props.onClick}
@@ -28,3 +30,5 @@ export default function Action(props: ActionProps) {
     </Component>
   );
 }
+
+export default React.forwardRef<ActionElement, ActionProps>(Action);
