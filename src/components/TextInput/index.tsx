@@ -5,7 +5,7 @@ import { ControlledTextInputProps } from "./ControlledTextInput";
 import ErrorMessage from "./ErrorMessage";
 import Label from "./Label";
 
-interface TextInputProps extends ControlledTextInputProps {
+interface TextInputProps extends Omit<ControlledTextInputProps, "size"> {
   classes?: {
     container?: string;
     label?: string;
@@ -27,10 +27,7 @@ const sizes = {
 
 function TextInput(props: TextInputProps) {
   const id = props.id || `input-${props.name}`;
-  const size = sizes[props.size || "md"];
-  const classes = props.classes || {};
-
-  const { hideLabel, ...rest } = props;
+  const { hideLabel, size = "md", classes = {}, ...rest } = props;
 
   return (
     <div className={clsx(props.className, classes.container, props.width)}>
@@ -43,7 +40,7 @@ function TextInput(props: TextInputProps) {
         id={id}
         className={clsx(
           classes.input,
-          size,
+          sizes[size],
           "px-4 w-full border-2 border-gray-200 outline-none focus:border-black",
           { "border-error": props.error }
         )}
