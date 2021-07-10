@@ -1,20 +1,28 @@
-import Action from "components/Action";
-import Link from "next/link";
-import React, { ReactNode } from "react";
+import Action, { ActionClickEvent, ActionElement } from "components/Action";
+import React, { ForwardedRef, ReactNode } from "react";
 
 interface DropdownItemProps {
-  href: string;
+  href?: string;
+  onClick?: ActionClickEvent;
   children?: ReactNode;
 }
 
-export default function DropdownItem({ href, children }: DropdownItemProps) {
+function DropdownItem(
+  { href, onClick, children }: DropdownItemProps,
+  ref: ForwardedRef<ActionElement>
+) {
   return (
-    <li>
-      <Link href={href} passHref>
-        <Action className="inline-block w-full text-right py-2 mt-1 last:mb-1 px-6 bg-white hover:bg-gray-50">
-          {children}
-        </Action>
-      </Link>
+    <li className="mt-1 last:mb-1">
+      <Action
+        ref={ref}
+        onClick={onClick}
+        href={href}
+        className="inline-block w-full text-right py-2 px-6 bg-white hover:bg-gray-50"
+      >
+        {children}
+      </Action>
     </li>
   );
 }
+
+export default React.forwardRef(DropdownItem);
