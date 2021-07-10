@@ -4,7 +4,7 @@ import { useState } from "react";
 export type LiftTriggerFunction = (yPos: number) => boolean;
 
 export default function useLiftOnScroll(
-  trigger: LiftTriggerFunction,
+  trigger = triggerBelowZero,
   initial = false
 ) {
   const [lift, setLift] = useState(initial);
@@ -19,4 +19,8 @@ export default function useLiftOnScroll(
   );
 
   return [lift] as const;
+}
+
+function triggerBelowZero(yPos: number) {
+  return yPos < 0;
 }
