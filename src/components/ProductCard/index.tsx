@@ -1,6 +1,6 @@
 import React from "react";
 import NumberFormat from "react-number-format";
-import ArrowedLink from "components/ArrowedLink";
+import ArrowedText from "components/ArrowedText";
 import ProductCardContainer from "./ProductCardContainer";
 import SquareImage from "./SquareImage";
 
@@ -36,7 +36,7 @@ function ProductCard(props: ProductProps) {
             decimalSeparator=","
             displayType="text"
           />
-          <ArrowedLink
+          <ArrowedText
             label={cta}
             arrowSize="narrow"
             classes={{
