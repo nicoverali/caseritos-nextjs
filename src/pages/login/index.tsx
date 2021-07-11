@@ -11,8 +11,8 @@ import Footer from "sections/Footer";
 import { useForm } from "react-hook-form";
 import { ClientSessionContext } from "context/ClientSessionProvider";
 import { Credentials } from "services/SessionService";
-import FormErrorBox from "components/FormErrorBox";
-import FormErrorMessage from "components/FormErrorBox/FormErrorMessage";
+import MessageBox from "components/MessageBox";
+import Message from "components/MessageBox/Message";
 import { UnauthorizedError } from "services/apiErrors";
 
 const requiredRule = {
@@ -63,15 +63,15 @@ function LoginPage() {
             className="mx-auto"
             form={{ onSubmit: handleSubmit(onSubmit) }}
           >
-            <FormErrorBox className="mb-4">
-              <FormErrorMessage show={credentialsInvalid}>
+            <MessageBox className="mb-4">
+              <Message show={credentialsInvalid}>
                 Email o contraseña incorrectos
-              </FormErrorMessage>
-              <FormErrorMessage show={unexpectedError}>
+              </Message>
+              <Message show={unexpectedError}>
                 ¡ Lo sentimos ! Ocurrió un error, por favor volvelo a intentar
                 más tarde
-              </FormErrorMessage>
-            </FormErrorBox>
+              </Message>
+            </MessageBox>
 
             <TextInput
               {...register("email", {

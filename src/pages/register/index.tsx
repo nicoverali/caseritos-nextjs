@@ -11,8 +11,8 @@ import Footer from "sections/Footer";
 import ClientService, { ClientRegisterRequest } from "services/ClientService";
 import { useForm } from "react-hook-form";
 import SessionService from "services/SessionService";
-import FormErrorBox from "components/FormErrorBox";
-import FormErrorMessage from "components/FormErrorBox/FormErrorMessage";
+import MessageBox from "components/MessageBox";
+import Message from "components/MessageBox/Message";
 import { UnavailableEmail } from "services/apiErrors";
 
 const requiredRule = {
@@ -69,12 +69,12 @@ function RegisterPage() {
             className="mx-auto"
             form={{ onSubmit: handleSubmit(onSubmit) }}
           >
-            <FormErrorBox className="mb-4">
-              <FormErrorMessage show={unexpectedError}>
+            <MessageBox className="mb-4">
+              <Message show={unexpectedError}>
                 ¡ Lo sentimos ! Ocurrió un error, por favor volvelo a intentar
                 más tarde
-              </FormErrorMessage>
-            </FormErrorBox>
+              </Message>
+            </MessageBox>
 
             <TextInput
               {...register("name", requiredRule)}

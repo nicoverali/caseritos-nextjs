@@ -20,7 +20,14 @@ module.exports = {
           pure: "#000",
         },
         primary: PRIMARY_COLOR,
-        error: colors.red[500],
+        error: {
+          light: colors.red[50],
+          DEFAULT: colors.red[500],
+        },
+        success: {
+          light: colors.green[50],
+          DEFAULT: colors.green[200],
+        },
       },
       fill: {
         primary: PRIMARY_COLOR,
