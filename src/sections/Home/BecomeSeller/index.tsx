@@ -49,7 +49,8 @@ export default function BecomeSeller({ className }: BecomeSellerProps) {
         </h2>
 
         <p className="mt-6 max-w-md">
-          Dejanos tu email para poder contactarte. Lorem ipsum dolor sit amet.
+          Dejanos tu email para poder contactarte. A la brevedad te enviaremos
+          toda la información necesaria.
         </p>
 
         <form className="flex flex-col items-start sm:flex-row mt-12">
