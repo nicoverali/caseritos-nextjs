@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { ForwardedRef } from "react";
 import ControlledTextInput from "./ControlledTextInput";
 import { ControlledTextInputProps } from "./ControlledTextInput";
 import ErrorMessage from "./ErrorMessage";
@@ -25,7 +25,7 @@ const sizes = {
   lg: "py-4",
 };
 
-function TextInput(props: TextInputProps) {
+function TextInput(props: TextInputProps, ref: ForwardedRef<HTMLInputElement>) {
   const id = props.id || props.name || "";
   const { hideLabel, size = "md", classes = {}, ...rest } = props;
 
@@ -42,6 +42,7 @@ function TextInput(props: TextInputProps) {
 
       <ControlledTextInput
         {...rest}
+        ref={ref}
         ariaLabelledby={`lbl-${id}`}
         id={id}
         className={clsx(
@@ -59,4 +60,4 @@ function TextInput(props: TextInputProps) {
   );
 }
 
-export default TextInput;
+export default React.forwardRef(TextInput);

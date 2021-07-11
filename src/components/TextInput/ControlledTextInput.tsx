@@ -1,5 +1,10 @@
 import clsx from "clsx";
-import React, { ChangeEvent, ChangeEventHandler, HTMLProps } from "react";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  ForwardedRef,
+  HTMLProps,
+} from "react";
 
 type InputChange = ChangeEvent<HTMLInputElement>;
 type TypeEventHandler = (value: string, name: string) => void;
@@ -11,7 +16,10 @@ export interface ControlledTextInputProps extends HTMLProps<HTMLInputElement> {
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-function ControlledTextInput(props: ControlledTextInputProps) {
+function ControlledTextInput(
+  props: ControlledTextInputProps,
+  ref: ForwardedRef<HTMLInputElement>
+) {
   const { onType, onChange, ariaLabelledby, ...rest } = props;
 
   const changeHandler = (event: InputChange) =>
@@ -19,6 +27,7 @@ function ControlledTextInput(props: ControlledTextInputProps) {
 
   return (
     <input
+      ref={ref}
       aria-labelledby={ariaLabelledby}
       {...rest}
       onChange={onChange || changeHandler}
@@ -26,4 +35,4 @@ function ControlledTextInput(props: ControlledTextInputProps) {
   );
 }
 
-export default ControlledTextInput;
+export default React.forwardRef(ControlledTextInput);
