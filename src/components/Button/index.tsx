@@ -29,7 +29,9 @@ function Button(props: ButtonProps, ref: ForwardedRef<ActionElement>) {
     <Action
       {...rest}
       ref={ref}
-      className={clsx(baseClass, styles[style], sizes[size], props.className)}
+      className={clsx(baseClass, styles[style], sizes[size], props.className, {
+        "pointer-events-none": props.disabled,
+      })}
     >
       {props.children}
     </Action>
