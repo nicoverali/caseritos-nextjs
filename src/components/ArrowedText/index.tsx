@@ -19,7 +19,7 @@ export default function ArrowedText(props: ArrowedTextProps) {
     props.arrowSize == "narrow" ? ArrowNarrowRightIcon : ArrowRightIcon;
 
   return (
-    <div className={clsx("flex items-center", classes.container)}>
+    <div className={clsx("flex items-center group", classes.container)}>
       <span className={clsx("text-sm mr-2", classes.label)}>{props.label}</span>
       <Arrow className={clsx("w-4", classes.arrow)} />
     </div>
