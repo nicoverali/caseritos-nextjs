@@ -7,7 +7,7 @@ import BigTitle from "sections/BigTitle";
 import DefaultHeader from "sections/DefaultHeader";
 import Footer from "sections/Footer";
 import OrderService, { Order } from "services/OrderService";
-import { MoonLoader } from "react-spinners";
+import LoadingSplashScreen from "components/LoadingSplashScreen";
 
 function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -23,11 +23,7 @@ function OrdersPage() {
   }, [token, router]);
 
   if (!orders.length) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center">
-        <MoonLoader size="40px" />
-      </div>
-    );
+    return <LoadingSplashScreen />;
   }
 
   return (

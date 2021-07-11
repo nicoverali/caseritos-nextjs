@@ -15,6 +15,7 @@ import { useRouter } from "next/dist/client/router";
 import { GetServerSideProps } from "next";
 import LoadingButton from "components/LoadingButton";
 import AuthHeader from "sections/AuthHeader";
+import LoadingSplashScreen from "components/LoadingSplashScreen";
 
 const requiredRule = {
   value: true,
@@ -36,7 +37,7 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
   const [unexpectedError, setUnexpectedError] = useState(false);
   const [credentialsInvalid, setCredentialsInvalid] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
-  const { login } = useContext(ClientSessionContext);
+  const { isLoggedIn, login } = useContext(ClientSessionContext);
   const router = useRouter();
   const {
     register,
@@ -60,6 +61,8 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
     }
     setLoggingIn(false);
   };
+
+  if (isLoggedIn === undefined || isLoggedIn) return <LoadingSplashScreen />;
 
   return (
     <>

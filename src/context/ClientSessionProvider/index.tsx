@@ -3,8 +3,8 @@ import ClientService, { Client } from "services/ClientService";
 import SessionService, { Credentials } from "services/SessionService";
 
 export type ClientSessionContextState = {
-  token: string | null;
-  isLoggedIn: boolean;
+  token: string | null | undefined;
+  isLoggedIn: boolean | undefined;
   client: Client | null;
   login: (credentials: Credentials) => Promise<void>;
   logout: () => Promise<void>;
@@ -12,7 +12,7 @@ export type ClientSessionContextState = {
 
 export const ClientSessionContext = createContext<ClientSessionContextState>({
   token: null,
-  isLoggedIn: false,
+  isLoggedIn: undefined,
   client: null,
   login: () => Promise.resolve(),
   logout: () => Promise.resolve(),
@@ -25,7 +25,7 @@ interface ClientSessionProviderProps {
 export default function ClientSessionProvider(
   props: ClientSessionProviderProps
 ) {
-  const [token, setToken] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null | undefined>(undefined);
   const [client, setClient] = useState<Client | null>(null);
 
   const login = async (credentials: Credentials): Promise<void> => {
@@ -48,9 +48,11 @@ export default function ClientSessionProvider(
     }
   }, []);
 
+  const isLoggedIn = token === undefined ? undefined : !!token;
+
   return (
     <ClientSessionContext.Provider
-      value={{ token, isLoggedIn: !!token, client, login, logout }}
+      value={{ token, isLoggedIn, client, login, logout }}
     >
       {props.children}
     </ClientSessionContext.Provider>

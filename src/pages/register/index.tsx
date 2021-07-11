@@ -14,6 +14,8 @@ import { UnavailableEmail } from "services/apiErrors";
 import { GetServerSideProps } from "next";
 import LoadingButton from "components/LoadingButton";
 import AuthHeader from "sections/AuthHeader";
+import { ClientSessionContext } from "context/ClientSessionProvider";
+import LoadingSplashScreen from "components/LoadingSplashScreen";
 
 const requiredRule = {
   required: {
@@ -46,13 +48,14 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
   const [unavailableEmail, setUnavailableEmail] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState(false);
   const [signingUp, setSigningUp] = useState(false);
+  const { isLoggedIn, login } = useContext(ClientSessionContext);
   const onSubmit = async (data: ClientRegisterRequest) => {
     try {
       setSigningUp(true);
       await ClientService.register(data);
       setUnavailableEmail(false);
       setUnexpectedError(false);
-      await SessionService.login(data);
+      await login(data);
     } catch (err) {
       if (err instanceof UnavailableEmail) {
         setUnavailableEmail(true);
@@ -62,6 +65,8 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
     }
     setSigningUp(false);
   };
+
+  if (isLoggedIn === undefined || isLoggedIn) return <LoadingSplashScreen />;
 
   return (
     <>
