@@ -14,6 +14,7 @@ import SessionService from "services/SessionService";
 import MessageBox from "components/MessageBox";
 import Message from "components/MessageBox/Message";
 import { UnavailableEmail } from "services/apiErrors";
+import { GetServerSideProps } from "next";
 
 const requiredRule = {
   required: {
@@ -32,7 +33,12 @@ const phoneRule = {
   pattern: { value: /^[0-9]+$/i, message: "Teléfono inválido" },
 };
 
-function RegisterPage() {
+const DEFAULT_REDIRECT = "/";
+interface RegisterPageProps {
+  redirectTo?: string;
+}
+
+function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
   const {
     register,
     handleSubmit,
@@ -117,7 +123,11 @@ function RegisterPage() {
 
           <p className="mx-auto text-center pt-6">
             ¿ Ya tenes una cuenta ?{" "}
-            <Link href="/login" passHref>
+            <Link
+              href={`/login?redirectUrl=${redirectTo}`}
+              as="/login"
+              passHref
+            >
               <Action className="text-primary font-medium">Ingresa</Action>
             </Link>
           </p>
@@ -129,3 +139,10 @@ function RegisterPage() {
   );
 }
 export default RegisterPage;
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  if (query.redirectUrl) {
+    return { props: { redirectTo: query.redirectUrl } };
+  }
+  return { props: {} };
+};

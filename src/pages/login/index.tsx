@@ -14,6 +14,8 @@ import { Credentials } from "services/SessionService";
 import MessageBox from "components/MessageBox";
 import Message from "components/MessageBox/Message";
 import { UnauthorizedError } from "services/apiErrors";
+import { useRouter } from "next/dist/client/router";
+import { GetServerSideProps } from "next";
 
 const requiredRule = {
   value: true,
@@ -25,21 +27,29 @@ const emailPatternRule = {
   message: "Email invalido",
 };
 
-function LoginPage() {
+const DEFAULT_REDIRECT = "/";
+
+interface LoginPageProps {
+  redirectTo?: string;
+}
+
+function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
   const [unexpectedError, setUnexpectedError] = useState(false);
   const [credentialsInvalid, setCredentialsInvalid] = useState(false);
+  const { login } = useContext(ClientSessionContext);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { login } = useContext(ClientSessionContext);
 
   const onSubmit = async (data: Credentials) => {
     try {
       setCredentialsInvalid(false);
       setUnexpectedError(false);
       await login(data);
+      router.push(redirectTo);
     } catch (err) {
       if (err instanceof UnauthorizedError) {
         setCredentialsInvalid(true);
@@ -94,7 +104,11 @@ function LoginPage() {
           </ClientForm>
           <p className="mx-auto text-center pt-6">
             ¿ No tenes una cuenta ?{" "}
-            <Link href="/register" passHref>
+            <Link
+              href={`/register?redirectUrl=${redirectTo}`}
+              as={"/register"}
+              passHref
+            >
               <Action className="text-primary font-medium">Registrate</Action>
             </Link>
           </p>
@@ -107,3 +121,10 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  if (query.redirectUrl) {
+    return { props: { redirectTo: query.redirectUrl } };
+  }
+  return { props: {} };
+};
