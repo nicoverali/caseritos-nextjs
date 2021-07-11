@@ -14,12 +14,11 @@ interface CounterProps {
     label: string;
     min?: number;
     max?: number;
-    value?: number;
     error?: string;
     onChange?: CounterChangeHandler;
     onInvalid?: InvalidValueHandler;
   };
-  width?: string;
+  className?: string;
   size?: "sm" | "md" | "lg";
 }
 
@@ -31,11 +30,10 @@ const iconSizes = {
 
 function Counter(props: CounterProps) {
   const { input } = props;
-  const { size = "md", width } = props;
+  const { size = "md", className } = props;
   const { onChange, onInvalid, ...inputRest } = props.input;
-
   const [counter, setCounter, increment, decrement] = useCounter(
-    0,
+    input.min,
     input.min,
     input.max,
     onChange,
@@ -43,8 +41,9 @@ function Counter(props: CounterProps) {
   );
 
   return (
-    <div className={clsx("flex", width)}>
+    <div className={clsx("flex", className)}>
       <SquareButton
+        aria-label="Decrementar cantidad"
         className="z-10"
         size={size}
         onClick={decrement}
@@ -68,6 +67,7 @@ function Counter(props: CounterProps) {
       />
 
       <SquareButton
+        aria-label="Incrementar cantidad"
         className="z-10"
         size={size}
         onClick={increment}

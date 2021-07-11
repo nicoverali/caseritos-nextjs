@@ -17,7 +17,7 @@ Default.args = {
     name: "counter-input",
     label: "counter",
   },
-  width: "w-64",
+  className: "w-64",
 };
 
 export const MinMaxConstraint = Template.bind({});
@@ -28,7 +28,7 @@ MinMaxConstraint.args = {
     min: 1,
     max: 10,
   },
-  width: "w-64",
+  className: "w-64",
 };
 
 export const SmallSize = Template.bind({});
@@ -38,7 +38,7 @@ SmallSize.args = {
     label: "counter",
   },
   size: "sm",
-  width: "w-64",
+  className: "w-64",
 };
 
 export const MediumSize = Template.bind({});
@@ -48,7 +48,7 @@ MediumSize.args = {
     label: "counter",
   },
   size: "md",
-  width: "w-64",
+  className: "w-64",
 };
 
 export const LargeSize = Template.bind({});
@@ -58,7 +58,7 @@ LargeSize.args = {
     label: "counter",
   },
   size: "lg",
-  width: "w-64",
+  className: "w-64",
 };
 
 export const WithError = Template.bind({});
@@ -68,5 +68,5 @@ WithError.args = {
     label: "counter",
     error: "An error occured",
   },
-  width: "w-64",
+  className: "w-64",
 };
