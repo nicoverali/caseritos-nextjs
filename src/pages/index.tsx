@@ -33,6 +33,7 @@ export default function Home({ products }: HomeProps) {
       </Head>
       <div className="w-full relative">
         <Image
+          priority
           className="z-0>"
           src={HomeHeroBg}
           layout="fill"

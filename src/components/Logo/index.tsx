@@ -9,5 +9,5 @@ interface LogoProps {
 
 export default function Logo({ style = "full", ...props }: LogoProps) {
   const logo = `/images/logo_${style}.png`;
-  return <Image src={logo} alt="caseritos logo" {...props} />;
+  return <Image priority src={logo} alt="caseritos logo" {...props} />;
 }
