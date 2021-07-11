@@ -35,6 +35,7 @@ export default function BecomeSeller({ className }: BecomeSellerProps) {
 
   return (
     <div
+      id="become-seller"
       className={clsx(
         "w-full flex items-center flex-col md:flex-row justify-center",
         className
