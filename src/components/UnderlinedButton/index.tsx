@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+import React, { ForwardedRef, Fragment } from "react";
 import Button, { ButtonProps } from "components/Button";
 import Underline from "./Underline";
+import { ActionElement } from "components/Action";
 
-function UnderlineButton(props: ButtonProps) {
+function UnderlineButton(props: ButtonProps, ref: ForwardedRef<ActionElement>) {
   return (
-    <Button {...props}>
+    <Button {...props} ref={ref}>
       <Fragment>
         {props.children}
         <Underline />
@@ -13,4 +14,4 @@ function UnderlineButton(props: ButtonProps) {
   );
 }
 
-export default UnderlineButton;
+export default React.forwardRef(UnderlineButton);

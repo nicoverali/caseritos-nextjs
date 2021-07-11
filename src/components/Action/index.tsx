@@ -1,4 +1,9 @@
-import React, { MouseEventHandler, ReactNode, ForwardedRef } from "react";
+import React, {
+  MouseEventHandler,
+  ReactNode,
+  ForwardedRef,
+  HTMLProps,
+} from "react";
 
 export type ActionElement = HTMLButtonElement & HTMLAnchorElement;
 export type HTMLButtonType = "submit" | "reset" | "button";
@@ -6,7 +11,8 @@ export type ActionClickEvent = MouseEventHandler<
   HTMLButtonElement | HTMLAnchorElement
 >;
 
-export interface ActionProps {
+export interface ActionProps
+  extends HTMLProps<HTMLButtonElement | HTMLAnchorElement> {
   href?: string;
   type?: HTMLButtonType;
   children: ReactNode;
@@ -20,10 +26,9 @@ function Action(props: ActionProps, ref: ForwardedRef<ActionElement>) {
 
   return (
     <Component
-      href={props.href}
+      {...props}
       ref={ref}
       type={Component == "button" ? type : undefined}
-      className={props.className}
       onClick={props.onClick}
     >
       {props.children}

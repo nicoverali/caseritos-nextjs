@@ -2,7 +2,7 @@ import Action, { ActionElement, ActionProps } from "components/Action";
 import React, { ForwardedRef } from "react";
 import clsx from "clsx";
 
-export interface ButtonProps extends ActionProps {
+export interface ButtonProps extends Omit<ActionProps, "size" | "style"> {
   style?: "default" | "primary" | "secondary" | "negative";
   size?: "sm" | "md" | "lg";
 }
