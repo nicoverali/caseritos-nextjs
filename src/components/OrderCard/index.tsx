@@ -11,7 +11,7 @@ interface OrderCardProps {
 function OrderCard({ order, className }: OrderCardProps) {
   return (
     <div className={clsx("flex", className)}>
-      <div className="relative h-32 w-36">
+      <div className="relative h-32 w-36 bg-gray-50">
         <Image
           src={order.product.thumbnailUrl}
           alt="order"
