@@ -1,9 +1,6 @@
 import Action from "components/Action";
 import AppContainer from "components/AppContainer";
-import Button from "components/Button";
 import ClientForm from "components/ClientForm";
-import Header from "components/Header";
-import HeaderLeft from "components/Header/HeaderLeft";
 import TextInput from "components/TextInput";
 import Link from "next/link";
 import React, { useContext, useState } from "react";
@@ -16,8 +13,8 @@ import Message from "components/MessageBox/Message";
 import { UnauthorizedError } from "services/apiErrors";
 import { useRouter } from "next/dist/client/router";
 import { GetServerSideProps } from "next";
-import { MoonLoader } from "react-spinners";
 import LoadingButton from "components/LoadingButton";
+import AuthHeader from "sections/AuthHeader";
 
 const requiredRule = {
   value: true,
@@ -66,11 +63,7 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
 
   return (
     <>
-      <Header>
-        <HeaderLeft className="flex items-center">
-          <p>CASERITOS</p>
-        </HeaderLeft>
-      </Header>
+      <AuthHeader />
       <AppContainer className="h-[calc(100vh-80px)] flex flex-col items-center">
         <div className="m-auto w-full">
           <ClientForm
