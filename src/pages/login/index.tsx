@@ -45,7 +45,7 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ reValidateMode: "onBlur" });
 
   const onSubmit = async (data: Credentials) => {
     try {

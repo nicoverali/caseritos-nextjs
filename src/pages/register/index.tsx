@@ -43,7 +43,7 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ reValidateMode: "onBlur" });
   const [unavailableEmail, setUnavailableEmail] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState(false);
   const [signingUp, setSigningUp] = useState(false);
