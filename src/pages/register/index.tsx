@@ -97,21 +97,21 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
                 errors?.email?.message ||
                 (unavailableEmail && "Este email ya existe")
               }
-              className="mt-6"
+              className="mt-4"
             />
             <TextInput
               {...register("password", requiredRule)}
               label="Contraseña"
               type="password"
               error={errors?.password?.message}
-              className="mt-6"
+              className="mt-4"
             />
-            <div className="flex mt-6">
+            <div className="flex mt-4">
               <TextInput
                 {...register("phone", phoneRule)}
                 label="Teléfono"
                 error={errors?.phone?.message}
-                className="mr-6"
+                className="mr-4"
               />
               <TextInput
                 {...register("address", requiredRule)}
@@ -121,7 +121,7 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
             </div>
             <LoadingButton
               style="primary"
-              className="mt-6"
+              className="mt-4"
               type="submit"
               loading={signingUp}
             >
@@ -129,7 +129,7 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
             </LoadingButton>
           </ClientForm>
 
-          <p className="mx-auto text-center pt-6">
+          <p className="mx-auto text-center pt-4">
             ¿ Ya tenes una cuenta ?{" "}
             <Link
               href={`/login?redirectUrl=${redirectTo}`}

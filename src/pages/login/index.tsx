@@ -100,19 +100,19 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
               {...register("password", { required: requiredRule })}
               type="password"
               label="Contraseña"
-              className="mt-6"
+              className="mt-4"
               error={errors?.password?.message}
             />
             <LoadingButton
               type="submit"
               style="primary"
-              className="mt-6 transition-all"
+              className="mt-4 transition-all"
               loading={loggingIn}
             >
               Ingresar
             </LoadingButton>
           </ClientForm>
-          <p className="mx-auto text-center pt-6">
+          <p className="mx-auto text-center pt-4">
             ¿ No tenes una cuenta ?{" "}
             <Link
               href={`/register?redirectUrl=${redirectTo}`}

@@ -19,7 +19,6 @@ interface ProductDescriptionProps {
 
 function ProductDescription({ product, className }: ProductDescriptionProps) {
   const { token } = useContext(ClientSessionContext);
-  const [outOfStock, setOutOfStock] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [orderComplete, setOrderComplete] = useState(false);
@@ -32,7 +31,6 @@ function ProductDescription({ product, className }: ProductDescriptionProps) {
       return;
     }
 
-    setOutOfStock(false);
     setUnexpectedError(false);
     setBuying(true);
     try {
@@ -44,9 +42,6 @@ function ProductDescription({ product, className }: ProductDescriptionProps) {
       }, 1000);
     } catch (err) {
       setBuying(false);
-      if (err instanceof OutOfStockError) {
-        setOutOfStock(true);
-      }
       setUnexpectedError(true);
     }
   };
@@ -84,7 +79,6 @@ function ProductDescription({ product, className }: ProductDescriptionProps) {
                 min: 1,
                 max: product.stock,
                 onChange: setQuantity,
-                error: outOfStock ? "No hay suficiente stock" : "",
               }}
             />
           </div>

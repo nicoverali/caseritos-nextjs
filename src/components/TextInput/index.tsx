@@ -46,7 +46,9 @@ function TextInput(props: TextInputProps) {
         )}
       />
 
-      <ErrorMessage error={props.error} className={classes.error} />
+      <div className="h-5 leading-5 overflow-hidden">
+        <ErrorMessage error={props.error} className={classes.error} />
+      </div>
     </div>
   );
 }
