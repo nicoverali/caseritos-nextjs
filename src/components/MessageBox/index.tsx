@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement } from "react";
 import Message, { MessageProps } from "./Message";
 
-type MessageBoxChild = ReactElement<typeof Message>;
+type MessageBoxChild = ReactElement<MessageProps, typeof Message>;
 
 interface MessageBoxProps {
   style?: "error" | "success";
@@ -22,9 +22,11 @@ function MessageBox({ style = "error", children, className }: MessageBoxProps) {
 
   return (
     <ul className={clsx("flex flex-col w-full", bgColors[style], className)}>
-      {messages.map((m) =>
-        React.cloneElement(m, { style: style } as MessageProps)
-      )}
+      {messages.map((m) => {
+        return React.cloneElement(m, {
+          style: m.props.style || style,
+        } as MessageProps);
+      })}
     </ul>
   );
 }

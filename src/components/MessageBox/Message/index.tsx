@@ -8,9 +8,9 @@ export interface MessageProps {
   className?: string;
 }
 
-const borderColors = {
-  error: "border-error before:bg-error",
-  success: "border-success before:bg-success",
+const colors = {
+  error: "bg-error-light border-error before:bg-error",
+  success: "bg-success-light border-success before:bg-success",
 };
 
 function Message(props: MessageProps) {
@@ -24,7 +24,7 @@ function Message(props: MessageProps) {
         "py-4 px-12 border-l border-r first:border-t last:border-b relative",
         "before:w-1 before:h-1 before:absolute before:top-7 before:left-8",
         "only:before:hidden only:text-center",
-        borderColors[props.style || "error"],
+        colors[props.style || "error"],
         props.className
       )}
     >
