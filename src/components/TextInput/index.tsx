@@ -26,17 +26,23 @@ const sizes = {
 };
 
 function TextInput(props: TextInputProps) {
-  const id = props.id || `input-${props.name}`;
+  const id = props.id || props.name || "";
   const { hideLabel, size = "md", classes = {}, ...rest } = props;
 
   return (
     <div className={clsx(props.className, classes.container, props.width)}>
-      <Label forId={id} hidden={hideLabel} className={classes.label}>
+      <Label
+        id={`lbl-${id}`}
+        forId={id}
+        hidden={hideLabel}
+        className={classes.label}
+      >
         {props.label}
       </Label>
 
       <ControlledTextInput
         {...rest}
+        ariaLabelledby={`lbl-${id}`}
         id={id}
         className={clsx(
           classes.input,
