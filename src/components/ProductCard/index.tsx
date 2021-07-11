@@ -16,7 +16,12 @@ function ProductCard(props: ProductProps) {
   const { cta = "Details" } = props;
   return (
     <ProductCardContainer classNames={props.className}>
-      <SquareImage layout="fill" src={thumbnailUrl} alt={description} />
+      <SquareImage
+        className="bg-gray-50"
+        layout="fill"
+        src={thumbnailUrl}
+        alt={description}
+      />
       <div className="text-left w-full group-focus:pl-2 group-hover:pl-2 transition-all ease-bounce-in duration-200">
         <p className="pr-2 h-5 line-clamp-1 text-sm font-light mt-4">
           {owner.storeName}
