@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import React from "react";
+import NumberFormat from "react-number-format";
 import { Order } from "services/OrderService";
 
 interface OrderCardProps {
@@ -28,9 +29,23 @@ function OrderCard({ order, className }: OrderCardProps) {
         </p>
       </div>
       <div className="flex flex-col justify-center ml-auto px-8 text-center">
-        <p className="text-2xl">${order.price * order.quantity}</p>
+        <NumberFormat
+          className="text-2xl"
+          value={order.price * order.quantity}
+          prefix="$"
+          thousandSeparator="."
+          decimalSeparator=","
+          displayType="text"
+        />
         <p>
-          {order.quantity} x ${order.price}
+          {order.quantity} x{" "}
+          <NumberFormat
+            value={order.price}
+            prefix="$"
+            thousandSeparator="."
+            decimalSeparator=","
+            displayType="text"
+          />
         </p>
       </div>
     </div>
