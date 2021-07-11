@@ -22,10 +22,11 @@ function MessageBox({ style = "error", children, className }: MessageBoxProps) {
 
   return (
     <ul className={clsx("flex flex-col w-full", bgColors[style], className)}>
-      {messages.map((m) => {
+      {messages.map((m, idx) => {
         return React.cloneElement(m, {
+          key: idx,
           style: m.props.style || style,
-        } as MessageProps);
+        });
       })}
     </ul>
   );
