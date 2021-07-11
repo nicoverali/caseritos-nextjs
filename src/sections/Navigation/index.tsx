@@ -1,4 +1,5 @@
 import Action from "components/Action";
+import Logo from "components/Logo";
 import { ClientSessionContext } from "context/ClientSessionProvider";
 import Link from "next/link";
 import React, { useContext } from "react";
@@ -10,7 +11,9 @@ export default function Navigation() {
   return (
     <nav>
       <Link href="/" passHref>
-        <Action>CASERITOS</Action>
+        <Action className="align-middle">
+          <Logo width="34" height="36" style="compact" />
+        </Action>
       </Link>
 
       <NavigationItem href="/products">Productos</NavigationItem>
