@@ -9,8 +9,8 @@ export interface MessageProps {
 }
 
 const colors = {
-  error: "bg-error-light border-error before:bg-error",
-  success: "bg-success-light border-success before:bg-success",
+  error: "text-error bg-error-light border-error before:bg-error",
+  success: "text-success bg-success-light border-success before:bg-success",
 };
 
 function Message(props: MessageProps) {

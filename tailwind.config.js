@@ -26,7 +26,7 @@ module.exports = {
         },
         success: {
           light: colors.green[50],
-          DEFAULT: colors.green[200],
+          DEFAULT: colors.green[800],
         },
       },
       fill: {
