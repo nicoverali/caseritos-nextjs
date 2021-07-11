@@ -1,6 +1,5 @@
 import Action from "components/Action";
 import AppContainer from "components/AppContainer";
-import Button from "components/Button";
 import ClientForm from "components/ClientForm";
 import Header from "components/Header";
 import HeaderLeft from "components/Header/HeaderLeft";
@@ -15,6 +14,7 @@ import MessageBox from "components/MessageBox";
 import Message from "components/MessageBox/Message";
 import { UnavailableEmail } from "services/apiErrors";
 import { GetServerSideProps } from "next";
+import LoadingButton from "components/LoadingButton";
 
 const requiredRule = {
   required: {
@@ -46,8 +46,10 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
   } = useForm();
   const [unavailableEmail, setUnavailableEmail] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState(false);
+  const [signingUp, setSigningUp] = useState(false);
   const onSubmit = async (data: ClientRegisterRequest) => {
     try {
+      setSigningUp(true);
       await ClientService.register(data);
       setUnavailableEmail(false);
       setUnexpectedError(false);
@@ -59,6 +61,7 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
         setUnexpectedError(true);
       }
     }
+    setSigningUp(false);
   };
 
   return (
@@ -116,9 +119,14 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
                 error={errors?.address?.message}
               />
             </div>
-            <Button style="primary" className="mt-6" type="submit">
+            <LoadingButton
+              style="primary"
+              className="mt-6"
+              type="submit"
+              loading={signingUp}
+            >
               Regitrarse
-            </Button>
+            </LoadingButton>
           </ClientForm>
 
           <p className="mx-auto text-center pt-6">

@@ -16,6 +16,8 @@ import Message from "components/MessageBox/Message";
 import { UnauthorizedError } from "services/apiErrors";
 import { useRouter } from "next/dist/client/router";
 import { GetServerSideProps } from "next";
+import { MoonLoader } from "react-spinners";
+import LoadingButton from "components/LoadingButton";
 
 const requiredRule = {
   value: true,
@@ -36,6 +38,7 @@ interface LoginPageProps {
 function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
   const [unexpectedError, setUnexpectedError] = useState(false);
   const [credentialsInvalid, setCredentialsInvalid] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
   const { login } = useContext(ClientSessionContext);
   const router = useRouter();
   const {
@@ -48,6 +51,7 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
     try {
       setCredentialsInvalid(false);
       setUnexpectedError(false);
+      setLoggingIn(true);
       await login(data);
       router.push(redirectTo);
     } catch (err) {
@@ -57,6 +61,7 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
         setUnexpectedError(true);
       }
     }
+    setLoggingIn(false);
   };
 
   return (
@@ -98,9 +103,14 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
               className="mt-6"
               error={errors?.password?.message}
             />
-            <Button type="submit" style="primary" className="mt-6">
+            <LoadingButton
+              type="submit"
+              style="primary"
+              className="mt-6 transition-all"
+              loading={loggingIn}
+            >
               Ingresar
-            </Button>
+            </LoadingButton>
           </ClientForm>
           <p className="mx-auto text-center pt-6">
             ¿ No tenes una cuenta ?{" "}

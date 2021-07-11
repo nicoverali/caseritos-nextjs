@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Button from "components/Button";
 import Counter from "components/Counter";
+import LoadingButton from "components/LoadingButton";
 import MessageBox from "components/MessageBox";
 import Message from "components/MessageBox/Message";
 import { ClientSessionContext } from "context/ClientSessionProvider";
@@ -19,8 +20,10 @@ interface ProductDescriptionProps {
 function ProductDescription({ product, className }: ProductDescriptionProps) {
   const { token } = useContext(ClientSessionContext);
   const [outOfStock, setOutOfStock] = useState(false);
+  const [unexpectedError, setUnexpectedError] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [orderComplete, setOrderComplete] = useState(false);
+  const [buying, setBuying] = useState(false);
   const router = useRouter();
 
   const handleBuy = async () => {
@@ -29,16 +32,22 @@ function ProductDescription({ product, className }: ProductDescriptionProps) {
       return;
     }
 
+    setOutOfStock(false);
+    setUnexpectedError(false);
+    setBuying(true);
     try {
       await OrderService.place(product.id, quantity, token);
+      setBuying(false);
       setOrderComplete(true);
       setTimeout(() => {
         router.push("/orders");
       }, 1000);
     } catch (err) {
+      setBuying(false);
       if (err instanceof OutOfStockError) {
         setOutOfStock(true);
       }
+      setUnexpectedError(true);
     }
   };
 
@@ -55,9 +64,14 @@ function ProductDescription({ product, className }: ProductDescriptionProps) {
           displayType="text"
         />
         <div className="flex items-end">
-          <Button style="primary" className="mr-6" onClick={handleBuy}>
+          <LoadingButton
+            style="primary"
+            className="mr-6"
+            onClick={handleBuy}
+            loading={buying}
+          >
             Comprar
-          </Button>
+          </LoadingButton>
           <div>
             <p className="text-center opacity-80 text-sm">
               stock: {product.stock}
@@ -78,6 +92,10 @@ function ProductDescription({ product, className }: ProductDescriptionProps) {
       </div>
       <MessageBox style="success" className="mt-4">
         <Message show={orderComplete}>¡ Orden completada !</Message>
+        <Message show={unexpectedError} style="error">
+          ¡ Lo sentimos ! Ocurrió un error, por favor volvelo a intentar más
+          tarde
+        </Message>
       </MessageBox>
     </div>
   );
