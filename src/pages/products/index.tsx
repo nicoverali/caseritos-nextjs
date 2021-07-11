@@ -22,8 +22,12 @@ export default function ProductsPage({ products }: ProductsPageProps) {
           {products.map((v) => (
             <li key={v.id} className="w-full">
               <Link href={`/products/${v.id}`} passHref>
-                <Action>
-                  <ProductCard className="w-full" product={v} />
+                <Action className="group outline-none">
+                  <ProductCard
+                    className="w-full"
+                    product={v}
+                    cta="Ver producto"
+                  />
                 </Action>
               </Link>
             </li>
