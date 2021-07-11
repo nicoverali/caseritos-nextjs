@@ -27,7 +27,7 @@ export default function BecomeSeller({ className }: BecomeSellerProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ reValidateMode: "onBlur" });
   const onSubmit = () => {
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 10000);
@@ -53,7 +53,10 @@ export default function BecomeSeller({ className }: BecomeSellerProps) {
           toda la información necesaria.
         </p>
 
-        <form className="flex flex-col items-start sm:flex-row mt-12">
+        <form
+          className="flex flex-col items-start sm:flex-row mt-12"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <TextInput
             {...register("seller-email", emailRule)}
             error={errors["seller-email"]?.message}
@@ -63,7 +66,7 @@ export default function BecomeSeller({ className }: BecomeSellerProps) {
             label="seller-email"
             hideLabel
           />
-          <UnderlineButton style="secondary" onClick={handleSubmit(onSubmit)}>
+          <UnderlineButton style="secondary" type="submit">
             Enviar
           </UnderlineButton>
         </form>
