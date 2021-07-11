@@ -8,13 +8,14 @@ import HeaderRight from "components/Header/HeaderRight";
 import useLiftOnScroll from "components/Header/useLiftOnScroll";
 import { ArrowLeftIcon } from "@heroicons/react/outline";
 import ClientMenu from "sections/ClientMenu";
+import Navigation from "sections/Navigation";
 
 interface DefaultHeaderProps {
   back?: boolean;
 }
 
 export default function DefaultHeader(props: DefaultHeaderProps) {
-  const [lift] = useLiftOnScroll((y) => y < 0);
+  const [lift] = useLiftOnScroll();
 
   return (
     <Header lift={lift}>
@@ -25,7 +26,7 @@ export default function DefaultHeader(props: DefaultHeaderProps) {
           </Action>
         )}
 
-        <p>CASERITOS</p>
+        <Navigation />
       </HeaderLeft>
       <HeaderRight className="flex items-center">
         <ClientMenu />
