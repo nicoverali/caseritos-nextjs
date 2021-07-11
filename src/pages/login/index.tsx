@@ -3,7 +3,7 @@ import AppContainer from "components/AppContainer";
 import ClientForm from "components/ClientForm";
 import TextInput from "components/TextInput";
 import Link from "next/link";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "sections/Footer";
 import { useForm } from "react-hook-form";
 import { ClientSessionContext } from "context/ClientSessionProvider";
@@ -44,6 +44,10 @@ function LoginPage({ redirectTo = DEFAULT_REDIRECT }: LoginPageProps) {
     handleSubmit,
     formState: { errors },
   } = useForm({ reValidateMode: "onBlur" });
+
+  useEffect(() => {
+    if (isLoggedIn) router.replace("/");
+  }, [isLoggedIn, router]);
 
   const onSubmit = async (data: Credentials) => {
     try {

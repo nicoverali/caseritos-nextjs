@@ -3,11 +3,10 @@ import AppContainer from "components/AppContainer";
 import ClientForm from "components/ClientForm";
 import TextInput from "components/TextInput";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "sections/Footer";
 import ClientService, { ClientRegisterRequest } from "services/ClientService";
 import { useForm } from "react-hook-form";
-import SessionService from "services/SessionService";
 import MessageBox from "components/MessageBox";
 import Message from "components/MessageBox/Message";
 import { UnavailableEmail } from "services/apiErrors";
@@ -16,6 +15,7 @@ import LoadingButton from "components/LoadingButton";
 import AuthHeader from "sections/AuthHeader";
 import { ClientSessionContext } from "context/ClientSessionProvider";
 import LoadingSplashScreen from "components/LoadingSplashScreen";
+import { useRouter } from "next/dist/client/router";
 
 const requiredRule = {
   required: {
@@ -49,6 +49,7 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
   const [unexpectedError, setUnexpectedError] = useState(false);
   const [signingUp, setSigningUp] = useState(false);
   const { isLoggedIn, login } = useContext(ClientSessionContext);
+  const router = useRouter();
   const onSubmit = async (data: ClientRegisterRequest) => {
     try {
       setSigningUp(true);
@@ -65,6 +66,10 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
     }
     setSigningUp(false);
   };
+
+  useEffect(() => {
+    if (isLoggedIn) router.replace("/");
+  }, [isLoggedIn, router]);
 
   if (isLoggedIn === undefined || isLoggedIn) return <LoadingSplashScreen />;
 
