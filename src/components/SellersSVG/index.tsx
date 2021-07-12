@@ -1,7 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import ImageOne from "@public/images/seller_image_one.jpg";
-import ImageTwo from "@public/images/seller_image_two.jpg";
 import { EmojiHappyIcon, HeartIcon, StarIcon } from "@heroicons/react/solid";
 
 interface SellerImagesProps {
@@ -9,6 +7,8 @@ interface SellerImagesProps {
 }
 
 export default function SellersSVG({ className }: SellerImagesProps) {
+  const imageOne = "/images/seller_image_one.jpg";
+
   return (
     <svg viewBox="0 0 105 80" className={className}>
       <foreignObject
@@ -19,7 +19,7 @@ export default function SellersSVG({ className }: SellerImagesProps) {
         height="70"
         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
       >
-        <Image src={ImageOne} alt="cocinando papas" />
+        <Image layout="fill" src={imageOne} alt="cocinando papas" />
       </foreignObject>
 
       <foreignObject
@@ -30,7 +30,11 @@ export default function SellersSVG({ className }: SellerImagesProps) {
         height="48"
         requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
       >
-        <Image src={ImageTwo} alt="cortando pan casero" />
+        <Image
+          layout="fill"
+          src="/images/seller_image_two.jpg"
+          alt="cortando pan casero"
+        />
       </foreignObject>
       <g>
         <circle cx="26" cy="54" r="6" className="fill-primary" />

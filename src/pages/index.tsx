@@ -2,7 +2,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
-import HomeHeroBg from "@public/images/home_hero.jpg";
 import AppContainer from "components/AppContainer";
 import LatestProducts from "sections/Home/LatestProducts";
 import BecomeSeller from "sections/Home/BecomeSeller";
@@ -36,7 +35,7 @@ export default function Home({ products }: HomeProps) {
           priority
           unoptimized
           className="z-0>"
-          src={HomeHeroBg}
+          src="/images/home_hero.jpg"
           layout="fill"
           objectFit="cover"
           objectPosition="center 20%"
