@@ -23,6 +23,7 @@ function ProductPage({ product }: ProductPageProps) {
         <section className="flex items-start mb-12 flex-wrap lg:flex-nowrap justify-end">
           <div className="w-full h-[40vh] lg:h-[60vh] relative bg-gray-50">
             <Image
+              priority
               unoptimized
               alt={product.name}
               src={product.pictureUrl}

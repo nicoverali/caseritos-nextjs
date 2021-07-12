@@ -17,6 +17,7 @@ function ProductCard(props: ProductProps) {
   return (
     <ProductCardContainer classNames={props.className}>
       <SquareImage
+        unoptimized
         className="bg-gray-50"
         layout="fill"
         src={thumbnailUrl}
