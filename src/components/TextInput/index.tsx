@@ -27,7 +27,7 @@ const sizes = {
 
 function TextInput(props: TextInputProps, ref: ForwardedRef<HTMLInputElement>) {
   const id = props.id || props.name || "";
-  const { hideLabel, size = "md", classes = {}, ...rest } = props;
+  const { hideLabel, size = "md", classes = {}, error, ...rest } = props;
 
   return (
     <div className={clsx(props.className, classes.container, props.width)}>
@@ -49,12 +49,12 @@ function TextInput(props: TextInputProps, ref: ForwardedRef<HTMLInputElement>) {
           classes.input,
           sizes[size],
           "px-4 w-full border-2 border-gray-200 outline-none focus:border-black",
-          { "border-error": props.error }
+          { "border-error": error }
         )}
       />
 
       <div className="h-5 leading-5 overflow-hidden">
-        <ErrorMessage error={props.error} className={classes.error} />
+        <ErrorMessage error={error} className={classes.error} />
       </div>
     </div>
   );
