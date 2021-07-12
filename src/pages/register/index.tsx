@@ -57,6 +57,7 @@ function RegisterPage({ redirectTo = DEFAULT_REDIRECT }: RegisterPageProps) {
       setUnavailableEmail(false);
       setUnexpectedError(false);
       await login(data);
+      router.push(redirectTo);
     } catch (err) {
       if (err instanceof UnavailableEmail) {
         setUnavailableEmail(true);
