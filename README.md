@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+[![Screen-Shot-2022-10-18-at-16-44-57.png](https://i.postimg.cc/fLvKPRdH/Screen-Shot-2022-10-18-at-16-44-57.png)](https://postimg.cc/BLXHLsMD)
 
-## Getting Started
+<p align="center">Homemade meals market in React: <a href="https://caseritos-react.herokuapp.com/">Caseritos App</a> </p>
 
-First, run the development server:
+## General info
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This web app is part of a project for **Web Apps Engineering** subject at Universidad Nacional del Sur.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This app is a continuation of my other [Laravel project](https://github.com/nicoverali/caseritos-laravel), for which I developed a homemade meals market web app. That previous project included a PostgreSQL database with data about users, products and orders. We then develop a NodeJS API to query that database which you can access at [Caseritos API](https://caseritos-api.herokuapp.com/).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+This React app consumes from that API, showing a user-friendly webpage to clients who want to buy products from sellers.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.tsx`.
+## Development
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The page was developed in **Typescript, with React and the [NextJs](https://nextjs.org/) framework** which I will describe later.
 
-## Learn More
+The development of the page was done following the **[Component-Driven-Development procedure](https://www.componentdriven.org/)**, that is, first the smallest and reusable components of the application are made and from these the whole application is built.
 
-To learn more about Next.js, take a look at the following resources:
+This type of development is usually accompanied by unit tests for each component; in this case, due to time constraints, unit tests were not performed, but the **[Storybook](https://storybook.js.org/)** tool was used for the development of each component in isolation.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Finally, a separation was made between the component logic and the business logic, placing the latter within services available for the components.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Features 
 
-## Deploy on Vercel
+**Accessibility**: The components are designed to meet accessibility standards. The report produced by Lighthouse indicates a near perfect score in this category.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Progressive Web App**: The application is PWA, that is, it can be installed on a device and used as if it were a native application. Again, the report given by Lighthouse indicates that this category is satisfactorily met.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Server-side rendering**: By using NextJs as a framework, we have facilities to implement this technique, which basically consists of rendering all or part of the final HTML of a page that uses a library like React or Vue.
+This pre-rendering can be done at compile time (higher efficiency), or in real time with a user request. This can improve the performance of a page since it takes advantage of the computational and network power of the server to preload information from APIs and populate HTML. In addition, it is very important for the SEO of the page.
+
+## Demo version
+
+This version uses fake data as well as preset users.
+
+**You can visit the demo version at [Caseritos demo version](https://caseritos-react.herokuapp.com/)**
+
+## Video demo
+
+At the end of this project we were requested to make a video showing what we made and explaining all the features in our app.
+
+<a href="https://youtu.be/FPANIc1nRfA">
+    <p align="center">
+    <img src="https://i.postimg.cc/wv0NJWnv/Screen-Shot-2022-10-18-at-17-05-04.png"/>
+    </p>
+</a>
